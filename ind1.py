@@ -19,16 +19,24 @@ class InRange:
         self.first = first
         self.second = second
 
+    def __lt__(self, other):
+        return other < self.first
+
+    def __gt__(self, other):
+        return other > self.second
+
+    def __eq__(self, other):
+        return self.first <= other < self.second
+
     def __contains__(self, other):
-        if isinstance(other, InRange):
-            return self.first <= other.first < self.second
-        else:
-            return False
+        return self.first <= other < self.second
 
 
 if __name__ == "__main__":
     interval = InRange(first=2, second=10)
-    x = InRange(first=6)
+    x = 4
+    print(f"Число вне диапазона и больше него: {interval > x}")
+    print(f"Число вне диапазона и меньше него: {interval < x}")
+    print(f"Число в диапазоне: {interval == x}")
     print(f"Число находится в диапазоне: {x in interval}")
     print(f"Число вне диапазона: {x not in interval}")
-
