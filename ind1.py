@@ -25,9 +25,6 @@ class InRange:
     def __gt__(self, other):
         return other > self.second
 
-    def __eq__(self, other):
-        return self.first <= other < self.second
-
     def __contains__(self, other):
         return self.first <= other < self.second
 
@@ -37,6 +34,5 @@ if __name__ == "__main__":
     x = 4
     print(f"Число вне диапазона и больше него: {interval > x}")
     print(f"Число вне диапазона и меньше него: {interval < x}")
-    print(f"Число в диапазоне: {interval == x}")
     print(f"Число находится в диапазоне: {x in interval}")
     print(f"Число вне диапазона: {x not in interval}")
